@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Vinith.BlogApp.models.Location;
+import com.Vinith.BlogApp.models.User;
 import com.Vinith.BlogApp.services.LocationService;
 
 @RestController
@@ -25,5 +26,13 @@ public class LocationController {
 	@GetMapping("/location/{id}")
 	public Optional<Location> getLocationByID(@PathVariable("id") Integer id) {
 		return locationService.getLocationById(id);
+	}
+	
+	@GetMapping("/location/{id}/users")
+	public List<User> getUsersByLocation(@PathVariable("id") Integer id){
+		Optional<Location> location=locationService.getLocationById(id);
+		if(location.isPresent())
+			return location.get().getUsers();
+		return null;
 	}
 }
