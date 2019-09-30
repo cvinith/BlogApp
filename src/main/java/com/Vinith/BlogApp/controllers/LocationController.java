@@ -35,4 +35,5 @@ public class LocationController {
 			return location.get().getUsers();
 		return null;
 	}
+	
 }

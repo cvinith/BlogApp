@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Vinith.BlogApp.models.Post;
 import com.Vinith.BlogApp.models.User;
 import com.Vinith.BlogApp.services.UserService;
 
@@ -25,6 +26,14 @@ public class UserController {
 	@GetMapping("/user/{id}")
 	public Optional<User> getUserById(@PathVariable("id") Integer id) {
 		return userService.getUserById(id);
+	}
+	
+	@GetMapping("/user/{id}/posts")
+	public List<Post> getPostsById(@PathVariable("id") Integer id){
+		Optional<User> user = userService.getUserById(id);
+		if(user.isPresent())
+			return user.get().getPosts();
+		return null;	
 	}
 
 }
