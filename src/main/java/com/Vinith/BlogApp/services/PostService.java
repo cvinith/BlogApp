@@ -23,4 +23,16 @@ public class PostService {
 		return postRepository.findById(id);
 	}
 
+	public List<Post> getPostsByUserId(Integer id) {
+		return postRepository.findByUserId(id);
+	}
+
+	public void addPost(Post post) {
+		postRepository.save(post);
+	}
+
+	public void deletePostById(Integer id) {
+		postRepository.deleteById(id);
+	}
+
 }

@@ -2,6 +2,7 @@ package com.Vinith.BlogApp.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -14,7 +15,7 @@ public class Location {
 	@Id
 	private Integer id;
 	private String name;
-	@OneToMany(mappedBy = "location")
+	@OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
 	private List<User> users;
 
 	public Location() {

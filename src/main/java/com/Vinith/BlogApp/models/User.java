@@ -2,6 +2,7 @@ package com.Vinith.BlogApp.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -19,10 +20,11 @@ public class User {
 	private String firstName;
 	private String lastName;
 	@ManyToOne
-	@JoinColumn(name = "location_id")
+	@JoinColumn(name = "locationid", insertable = false, updatable = false)
 	private Location location;
+	private Integer locationid;
 	private String email;
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Post> posts;
 
 	public User() {
@@ -87,6 +89,14 @@ public class User {
 
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
+	}
+
+	public Integer getLocationid() {
+		return locationid;
+	}
+
+	public void setLocationid(Integer locationid) {
+		this.locationid = locationid;
 	}
 
 }
