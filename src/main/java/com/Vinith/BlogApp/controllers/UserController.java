@@ -41,11 +41,6 @@ public class UserController {
 		return null;
 	}
 
-	// fetching all users on a particular location id
-	@GetMapping("/users/location/{id}/users")
-	public List<User> getUsersByLocationId(@PathVariable("id") Integer id) {
-		return userService.getUserByLocationId(id);
-	}
 
 	@PostMapping("/user")
 	public void addUser(@RequestBody User user) {

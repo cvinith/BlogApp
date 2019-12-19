@@ -5,11 +5,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -19,10 +16,6 @@ public class User {
 	private Integer id;
 	private String firstName;
 	private String lastName;
-	@ManyToOne
-	@JoinColumn(name = "locationid", insertable = false, updatable = false)
-	private Location location;
-	private Integer locationid;
 	private String email;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Post> posts;
@@ -31,12 +24,11 @@ public class User {
 		super();
 	}
 
-	public User(Integer id, String firstName, String lastName, Location location, String email, List<Post> posts) {
+	public User(Integer id, String firstName, String lastName, String email, List<Post> posts) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.location = location;
 		this.email = email;
 		this.posts = posts;
 	}
@@ -65,15 +57,6 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	@JsonBackReference
-	public Location getLocation() {
-		return location;
-	}
-
-	public void setLocation(Location location) {
-		this.location = location;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -89,14 +72,6 @@ public class User {
 
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
-	}
-
-	public Integer getLocationid() {
-		return locationid;
-	}
-
-	public void setLocationid(Integer locationid) {
-		this.locationid = locationid;
 	}
 
 }

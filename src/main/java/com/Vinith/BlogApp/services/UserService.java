@@ -23,10 +23,6 @@ public class UserService {
 		return userRepository.findById(id);
 	}
 
-	public List<User> getUserByLocationId(Integer id) {
-		return userRepository.findByLocationId(id);
-	}
-
 	public void addUser(User user) {
 		userRepository.save(user);
 	}
